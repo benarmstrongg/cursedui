@@ -40,7 +40,7 @@ const Counter = () => component(function counter($) {
 })
 ```
 
-The callback you pass to `component` function recieves one argument: the `createElement` function. To call this function, pass your element's tag name and a callback method to define properties on your element.
+The callback you pass to `component` function recieves one argument: the `createElement` function. To call this function, pass your element's tag name and a callback method to define properties on your element using `with` statements.
 
 ```javascript
 component(function counter($) {
