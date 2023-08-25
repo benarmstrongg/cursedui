@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "terser main.js --compress ecma=2015 --mangle eval,toplevel > main.min.js",
-    "dev": "nodemon -w main.js -x 'npm run build'"
+    "build": "terser cursedui.js --compress ecma=2015 --mangle eval,toplevel > dist/cursedui.min.js",
+    "dev": "nodemon -w cursedui.js -x 'npm run build'"
   },
   "keywords": [],
   "author": "",
