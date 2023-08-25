@@ -13,9 +13,9 @@ Cursed Javacript UI Library (😨 DO NOT USE 😨)
 - 🎃 Semicolons are discouraged 🎃
 
 ## Usage
-Add the following code snippet to your html page
+Add the following code snippet to your HTML file:
 ```html
-<script src="https://raw.githubusercontent.com/benarmstrongg/cursedui/main/dist/cursedui.min.js" defer>
+<script src="https://raw.githubusercontent.com/benarmstrongg/cursedui/main/dist/cursedui.min.js">
 ```
 
 ## API Reference
