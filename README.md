@@ -52,6 +52,8 @@ component(function counter($) {
 })
 ```
 
+Sure, you could just do `p.innerText = "text"` and avoid the `with` statement, but where's the fun in that?
+
 ### State
 
 No need for `let` or `const` - state variables are declared on the window object! Be careful not to reuse variable names! 
