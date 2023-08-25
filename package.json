@@ -1,0 +1,17 @@
+{
+  "name": "cursedui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "terser main.js --compress ecma=2015 --mangle eval,toplevel > main.min.js",
+    "dev": "nodemon -w main.js -x 'npm run build'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "terser": "^5.19.2"
+  }
+}
