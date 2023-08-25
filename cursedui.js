@@ -79,12 +79,6 @@ w.component = (initFn) => {
                 child.rerender();
             }
         }
-
-        if (isNested) {
-            for (const prop of stateMap[rootElem.id]) {
-                w[prop] = cache[prop];
-            }
-        }
         // @ts-ignore
         w.cre = document.body;
     };
