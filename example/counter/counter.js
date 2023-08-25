@@ -1,14 +1,3 @@
-
-const Text = () => component(function text($) {
-    h = 'ok'
-
-    $('p', p => {
-        with (p) {
-            innerText = h
-        }
-    })
-})
-
 component(function counter($) {
     count = 0
     stepSize = 1;
@@ -64,8 +53,6 @@ component(function counter($) {
             });
         }
     });
-
-    Text()
 
     $('p', p => {
         with (p) {
