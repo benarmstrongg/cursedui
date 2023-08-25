@@ -73,6 +73,11 @@ component(function counter($) {
         }
     })
 })
+
+// WILL NOT RERENDER ON count CHANGE
+component(function countChecker($) {
+    count = 0
+})
 ```
 
 Don't worry, you can nest components without having your nested state reinitialized.
