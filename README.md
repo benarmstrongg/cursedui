@@ -22,7 +22,7 @@ Add the following code snippet to your html page
 
 ### Rendering
 
-Use the `component` method to declare composable, reusable components
+Use the `component` method to declare composable, reusable components.
 ```javascript
 // named function -> <counter>
 component(function counter($) {
@@ -31,6 +31,11 @@ component(function counter($) {
 
 // anonymous function -> <component>
 component($ => {
+    // ...
+})
+
+// reusable component
+const Counter = () => component(function counter($) {
     // ...
 })
 ```
