@@ -17,7 +17,6 @@ w.component = (initFn) => {
     // @ts-ignore
     w.cre = rootElem;
     rootElem.id = Math.ceil(Math.random() * 100_000);
-    rootElem.isComponent = true;
 
     let currentParentElem = rootElem;
     let lastRenderedElem = rootElem;
