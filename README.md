@@ -111,3 +111,11 @@ component(function counter($) {
     })
 })
 ```
+
+## Example
+
+Full counter example
+
+[Page](https://benarmstrongg.github.io/cursedui/)
+
+[Code](https://github.com/benarmstrongg/cursedui/blob/main/index.html)
