@@ -60,7 +60,7 @@ component(function counter($) {
 })
 ```
 
-Sure, you could just do `p.innerText = "text"` and avoid the `with` statement, but where's the fun in that?
+Sure, you could just do `element.property = value` and avoid the `with` statement, but where's the fun in that?
 
 ### State
 
