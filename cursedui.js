@@ -8,25 +8,39 @@ const cache = {};
 w.cre = document.body;
 
 // @ts-ignore
-w.component = (initFn) => {
-    const rootElem = document.createElement(initFn.name || 'component');
+w.component = function (initFn) {
     // @ts-ignore
-    const isNested = w.cre !== document.body;
+    const rootElem = document.createElement(initFn.name || w.component.caller?.name || 'component');
     // @ts-ignore
     w.cre.append(rootElem);
     // @ts-ignore
     w.cre = rootElem;
     rootElem.id = Math.ceil(Math.random() * 100_000);
-
     let currentParentElem = rootElem;
     let lastRenderedElem = rootElem;
     let currentRenderLevel = 0;
     let lastRenderLevel = 0;
 
     function createElement(type, renderFn) {
-        const elem = document.createElement(type);
+        const isComponent = typeof type === 'function';
+        const tagName = isComponent ? (type.name || 'nestedcomponent') : type;
+
+        const subcomponentKey = `${tagName}-${currentRenderLevel}-${lastRenderLevel}-${renderFn.toString()}`;
+        // @ts-ignore
+        let elem = createElement.subcomponents?.get(subcomponentKey);
+        // @ts-ignore
+        if (isComponent && !elem) {
+            elem = type();
+            // @ts-ignore
+            createElement.subcomponents ??= new Map();
+            // @ts-ignore
+            createElement.subcomponents.set(subcomponentKey, elem);
+        }
+        elem ??= document.createElement(tagName);
+
         currentRenderLevel++;
-        elem.render = () => createElement(type, renderFn);
+        // @ts-ignore
+        elem.render = () => createElement(tagName, renderFn);
         if (currentRenderLevel > lastRenderLevel) {
             currentParentElem.append(elem);
             currentParentElem = elem;
@@ -61,22 +75,17 @@ w.component = (initFn) => {
     }
 
     rootElem.rerender = () => {
-        if (isNested && !document.getElementById(rootElem.id)) {
-            // @ts-ignore
-            w.cre.append(rootElem);
-        }
-
         const children = [...(rootElem.children || [])]
         // @ts-ignore
         w.cre = rootElem;
         for (const child of children) {
-            if (child.render) {
-                child.remove();
-                child.render();
-            }
-            else if (child.rerender) {
+            if (child.rerender) {
                 child.remove();
                 child.rerender();
+            }
+            else if (child.render) {
+                child.remove();
+                child.render();
             }
         }
         // @ts-ignore
@@ -84,6 +93,7 @@ w.component = (initFn) => {
     };
     // @ts-ignore
     w.cre = document.body;
+    return rootElem;
 }
 
 function detectChanges() {
@@ -91,6 +101,7 @@ function detectChanges() {
         if (prop in w && prop in cache && w[prop] !== cache[prop]) {
             const elem = stateMap[prop];
             cache[prop] = w[prop];
+            elem.render && elem.render();
             elem.rerender();
         }
     }
